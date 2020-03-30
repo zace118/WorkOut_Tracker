@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-// let db = require("../models");
+let db = require("../models/workoutSchema.js");
 
 mongoose.connect("mongodb://localhost/workoutTrackerDB", {
     useNewUrlParser: true,
@@ -135,13 +135,15 @@ let workoutSeed = [
     }
 ];
 
-// db.Workout.deleteMany({})
-//     .then(() => db.Workout.collection.insertMany(workoutSeed))
-//     .then(data => {
-//         console.log(data.result.n + " records inserted!");
-//         process.exit(0);
-//     })
-//     .catch(err => {
-//         console.error(err);
-//         process.exit(1);
-//     });
+// db.create(workoutSeed);
+
+db.deleteMany({})
+    .then(() => db.collection.insertMany(workoutSeed))
+    .then(data => {
+        console.log(data.result.n + " records inserted!");
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
